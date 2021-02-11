@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -15,24 +15,19 @@ namespace AMobile.Controllers
     public class PhonesController : Controller
     {
         private ShopContext db = new ShopContext();
-
         // GET: Phones
         public ActionResult Index(string category, string search)
         {
-            //instantiate viewmodel
             PhoneViewModel viewModel = new PhoneViewModel();
-
-            var phones = db.Phones.Include(p => p.Category); //query to return all phones, also with all categories related
-
+            var phones = db.Phones.Include(p => p.Category);
             if (!String.IsNullOrEmpty(search))
-            {// this is basically filtering which is very easy
-                phones = phones.Where(p => p.Name.Contains(search) || //we could do only search or only description etc
+            {
+                phones = phones.Where(p => p.Name.Contains(search) ||
                                         p.Description.Contains(search) ||
                                         p.Category.Name.Contains(search) ||
                                         p.Capacity.Contains(search));
                 viewModel.Search = search;
             }
-            //maybe if i cant understand categories with count i shouldnt make this part, i cna delete it easilylater
             viewModel.CategoriesWithCount = from matchingProducts in phones
                                             where
                                             matchingProducts.CategoryID != null
@@ -76,9 +71,6 @@ namespace AMobile.Controllers
             return View();
         }
 
-        // POST: Phones/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,Name,Price,Description,Capacity,Colour,Specs,CategoryID")] Phone phone)
@@ -110,9 +102,6 @@ namespace AMobile.Controllers
             return View(phone);
         }
 
-        // POST: Phones/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,Name,Price,Description,Capacity,Colour,Specs,CategoryID")] Phone phone)
