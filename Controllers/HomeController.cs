@@ -12,9 +12,10 @@ namespace AMobile.Controllers
         {
             return View();
         }
+        
         public ActionResult About()
         {
-            ViewBag.Message = "Description ";
+            ViewBag.Message = "Description Example";
             return View();
         }
 
