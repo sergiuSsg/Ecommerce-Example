@@ -1,0 +1,85 @@
+﻿@model  AMobile.ViewModels.PhoneViewModel
+    <!--IEnumerable<AMobile.Models.Phone>-->
+
+    @{
+        ViewBag.Title = "Index";
+    }
+
+    <h2>@ViewBag.Title</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+        @using (Html.BeginForm("Index", "Phones", FormMethod.Get))
+        {
+            <label>Filter by Category:</label>
+            @Html.DropDownListFor(viewMod => viewMod.Category, Model.CategoryFilterItems, "All");
+            <input type="submit" value="Filter"/>
+            <input type="hidden" name="Search" id="Search" value="@Model.Search"/>
+        }
+    </p>
+
+
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phones.First().Name)
+                <!-- First() is used when we have a collection and not a single object
+                    and it enables access to the properties. ex: here if we used Phones.Name, Name
+                    woudln't appear, it doesn't see it so that's why we use first so we get access
+                    -->
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phones.First().Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phones.First().Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phones.First().Capacity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phones.First().Colour)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phones.First().Specs)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.Phones)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Capacity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Colour)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Specs)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+
+    </table>

@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body style="padding-top:20px;">
+    <div style="margin-bottom:0; border:none;" >
+        <div class="container">
+            <img id="logo-main" src="~/Content/Images/logo.png" width="200" style="margin-left:50px;">
+            <nav style="margin-bottom:0;" id="navbar-primary" class="navbar bg-white" role="navigation">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button style="border-color:black;" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-primary-collapse">
+                            <span class="sr-only" style="background-color:black;">Toggle navigation</span>
+                            <span class="icon-bar" style="background-color:black;"></span>
+                            <span class="icon-bar" style="background-color:black;"></span>
+                            <span class="icon-bar" style="background-color:black;"`></span>
+                        </button>
+                    </div>
+                    <div class="collapse navbar-collapse" id="navbar-primary-collapse">
+                        <ul class="nav navbar-nav">
+                            <li>@Html.ActionLink("Home", "Index", "Home", null, new { @class = "", @style = "color:black;" })</li>
+                            <li>@Html.ActionLink("Phones", "Index", "Phones", null, new { @style = "color:black;" })</li>
+                            <li>@Html.ActionLink("Categories", "Index", "Categories", null, new { @style = "color:black;" })</li>
+                            <li>@Html.ActionLink("Services", "Index", "Services", null, new { @style = "color:black;" })</li>
+                            <li>@Html.ActionLink("About Us", "About", "Home", null, new { @style = "color:black;" })</li>
+                            <li>@Html.ActionLink("Contact", "Contact", "Home", null, new { @style = "color:black;" })</li>
+                        </ul>
+                        @using (Html.BeginForm("Index", "Phones", FormMethod.Get, new { @class = "navbar-form navbar-right" }))
+                        {
+                            <div class="input-group">
+                                @Html.TextBox("Search", null, new { @class = "form-control", @placeholder = "Search" })
+                            </div>
+
+                            <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+                        }
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+
+
+
+
+
+
+
+        <footer class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h3>Service and support</h3>
+                    <ul>
+                        <li>Contact us</li>
+                        <li>Distributors</li>
+                        <li>Distributors</li>
+                        <li>Distributors</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h3>Service and support</h3>
+                    <ul>
+                        <li>Contact us</li>
+                        <li>Distributors</li>
+                        <li>Distributors</li>
+                        <li>Distributors</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    @Html.ActionLink("Home", "Index", "Home", null, new { @class = "", @style = "color:black;" })
+                </div>
+
+                //make it like abbexa cu links down
+            </div>
+        </footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
