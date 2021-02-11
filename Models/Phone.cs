@@ -11,13 +11,7 @@ namespace AMobile.Models
         public string Capacity { get; set; }
         public string Colour { get; set; }
         public string Specs { get; set; }
-
         public int? CategoryID { get; set; }
-
         public virtual Category Category { get; set; }
-
-
-
-        //will make after category,maybe categoryid,and maybe image mapping
     }
 }
